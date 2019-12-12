@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Snap Finance Checkout
  * Plugin URI:        https://snapfinance.com/
- * Description:       Get approved through Snap Finance for up to $3000 with bad credit or no credit.
+ * Description:       No Credit Needed Financing Up to $3,000. Easy to Apply. Get Fast, Flexible Financing for the Things You Need.
  * Version:           1.0.0
  * Author:            Snap Finance
  * Author URI:        https://snapfinance.com/
@@ -125,8 +125,8 @@ function get_snap_finance_token() {
     } else {
         $client_id = $snap_finance_setting['snap_finance_client_live_id'];
         $client_secret = $snap_finance_setting['snap_finance_client_live_secret'];
-        $api_url = 'https://auth.snapfinance.com/oauth/token';
-        $audience_url = 'https://api.snapfinance.com/v2/internal';
+        $api_url = 'https://checkout-prod.auth0.com/oauth/token';
+        $audience_url = 'https://api.snapfinance.com/checkout/v2';
     }
 
     $snap_finance_token = false;
@@ -262,7 +262,7 @@ function snap_finance_init_gateway_class() {
             $this->icon = ''; // URL of the icon that will be displayed on checkout page near your gateway name
             $this->has_fields = true; // in case you need a custom credit card form
             $this->method_title = 'Snap Finance Checkout';
-            $this->method_description = 'No Credit Needed Financing Up to $3,000. Easy to Apply. Approvals up to 80%. Get Fast, Flexible Financing for the Things You Need.'; // will be displayed on the options page
+            $this->method_description = 'No Credit Needed Financing Up to $3,000. Easy to Apply. Get Fast, Flexible Financing for the Things You Need.'; // will be displayed on the options page
             // gateways can support subscriptions, refunds, saved payment methods,
             // but in this tutorial we begin with simple payments
             $this->supports = array(
@@ -290,8 +290,8 @@ function snap_finance_init_gateway_class() {
             } else {
                 $this->snap_finance_client_id = $this->get_option('snap_finance_client_live_id');
                 $this->snap_finance_client_secret = $this->get_option('snap_finance_client_live_secret');
-                $this->snap_finance_api_url = 'https://auth.snapfinance.com/oauth/token';
-                $this->snap_finance_api_audience_url = 'https://api.snapfinance.com/v2/internal';
+                $this->snap_finance_api_url = 'https://checkout-prod.auth0.com/oauth/token';
+                $this->snap_finance_api_audience_url = 'https://api.snapfinance.com/checkout/v2';
             }
 
 
@@ -333,7 +333,7 @@ function snap_finance_init_gateway_class() {
                     'title' => 'Description',
                     'type' => 'textarea',
                     'description' => 'This controls the description which the user sees during checkout.',
-                    'default' => 'No Credit Needed Financing Up to $3,000. Easy to Apply. Approvals up to 80%. Get Fast, Flexible Financing for the Things You Need.',
+                    'default' => 'No Credit Needed Financing Up to $3,000. Easy to Apply. Get Fast, Flexible Financing for the Things You Need.',
                 ),
                 'snap_finance_mode' => array(
                     'title' => 'Environment',
@@ -367,7 +367,7 @@ function snap_finance_init_gateway_class() {
                 'snap_finance_client_shape' => array(
                     'title' => 'Checkout Button Shape',
                     'type' => 'select',
-                    'options' => array('rect' => 'Rect', 'rounded' => 'Rounded', 'pill' => 'Pill'),
+                    'options' => array('rect' => 'Rectangular', 'rounded' => 'Rounded', 'pill' => 'Pill'),
                     'default' => 'pill',
                 ),
                 'snap_finance_client_height' => array(

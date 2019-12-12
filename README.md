@@ -1,4 +1,4 @@
-# WooCommerce Snapfinance checkout
+﻿# WooCommerce Snapfinance checkout
 
 ## Description
 
@@ -29,7 +29,7 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
     1.  Enable/Disable – Tick to enable the module.
     2.  Title – Title you want to display at checkout page
     3.  Description – Enter appropriate description to display at checkout.
-    4.  Environment: Select the environment for plugin whether it is sandbox or production. You need to enter Client ID and Secret Key according to 		    selected  environment.
+    4.  Environment: Select the environment for plugin whether it is sandbox or production. You need to enter Client ID and Secret Key according to selected  environment.
     5.  Client ID – Enter Client ID which you will receive from your developer account on Snap Finance Website.
     6.  Client Secret Key – Enter Client Secret Key which you will receive from your developer account on Snap Finance Website.
     7.  Now click save and customer will get Snap Finance option during the checkout process
@@ -49,7 +49,19 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 ### 1.0.0
 
 -   Change in plugin description.
+
 -   Change in endpoint API calls.
+
 -   Access token encoded in url.
+
 -   Change in javascript url.
+
 -   Read only field for plugin title and description.
+
+-   Updating cache of the plugin during the change of client id and seceret id. 
+
+-   Change in Plugin description.
+
+-   Updated validation message in parameters of plugin setting.
+
+-   Updated code for better cache management of client id and client seceret key.

@@ -26,15 +26,26 @@ jQuery(document).ready(function () {
         }
     }
     if (jQuery('#woocommerce_snap_finance_title').size() > 0) {
+		
         change_snap_finace_setting();
-        jQuery('#woocommerce_snap_finance_snap_finance_client_height').attr('min',25);
+jQuery('#woocommerce_snap_finance_snap_finance_client_height').attr('oninvalid',"this.setCustomValidity('Value should be between 25 to 55')");
+		jQuery('#woocommerce_snap_finance_snap_finance_client_height').attr('onchange',"this.setCustomValidity('')");
+		jQuery('#woocommerce_snap_finance_snap_finance_client_height').attr('min',25);
         jQuery('#woocommerce_snap_finance_snap_finance_client_height').attr('max',55);
         jQuery('#mainform').submit( function() {
             if ( change_apply ) {
                 var r = confirm("Are you sure you want to change your credentials?");
                 if (r == true) {
                     createCookie('snap_token','yes');
-                  var data = { action:'reset_token' };
+                  snap_finance_reset_token();
+                
+              } else {
+                return false;
+            } 
+        }          
+    } );
+		function snap_finance_reset_token() {
+			var data = { action:'reset_token' };
                   jQuery.ajax({
                     type: "post",
                     dataType: "json",
@@ -43,14 +54,11 @@ jQuery(document).ready(function () {
                     success: function (response) {
 
                     }
-                });
-              } else {
-                return false;
-            } 
-        }          
-    } );
+					  });
+		}
         var snap_change = readCookie('snap_token');
         if ( snap_change == 'yes' ) {
+			snap_finance_reset_token();
             eraseCookie('snap_token');
             jQuery('#mainform h1.screen-reader-text').after('<div id="message" class="updated inline"><p><strong>Credentials are updated and token successfully reset</strong></p></div>');
         }
