@@ -65,3 +65,4 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 -   Updated validation message in parameters of plugin setting.
 
 -   Updated code for better cache management of client id and client seceret key.
+-   Updated product array price that was submitted in js.
