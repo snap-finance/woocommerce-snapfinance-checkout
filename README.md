@@ -48,21 +48,12 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 
 ### 1.0.0
 
--   Change in plugin description.
-
--   Change in endpoint API calls.
-
--   Access token encoded in url.
-
--   Change in javascript url.
-
--   Read only field for plugin title and description.
-
--   Updating cache of the plugin during the change of client id and seceret id. 
-
--   Change in Plugin description.
-
--   Updated validation message in parameters of plugin setting.
-
+-   Change in plugin description
+-   Change in endpoint API calls
+-   Access token encoded in url
+-   Change in javascript url
+-   Read only field for plugin title and description
+-   Updating cache of the plugin during the change of client id and seceret id
+-   Updated validation message in parameters of plugin setting
 -   Updated code for better cache management of client id and client seceret key.
--   Updated product array price that was submitted in js.
+-   Updated product array price that was submitted in js
