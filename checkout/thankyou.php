@@ -101,11 +101,12 @@ defined( 'ABSPATH' ) || exit;
     if ( $order->get_items() ) {
     	foreach ( $order->get_items() as $items ) {
     		$item_data = $items->get_data();
+			$single_price = $item_data['total'] / $item_data['quantity'];
     		$order_items[] = array(
     			'productId' => $item_data['product_id'],
     			'quantity' => $item_data['quantity'],
     			'description' => $item_data['name'],
-    			'price' => $item_data['total'],
+    			'price' => $single_price,
     		);
     	}
     }
