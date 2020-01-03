@@ -1,4 +1,10 @@
-#checkout .payment-option-label input {
+#checkout main{
+	margin-bottom: 20px;
+	text-align: center;
+	max-width: 250px;
+	margin: 0 auto;
+}
+#checkout .payment-option-label input,#checkout .application_id_box {
 	display: none;
 }
 #checkout .checkout_title {
@@ -33,6 +39,9 @@
     right: -10px;
 }
 .payment-option-label label div {
+	position: relative;
+}
+.payment-option-label label #snap-checkout-button {
 	position: relative;
 	margin: 10px 0;
 	cursor: pointer;
