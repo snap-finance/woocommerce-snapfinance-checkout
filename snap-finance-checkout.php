@@ -259,7 +259,7 @@ function wc_snap_finance_style() {
 			$key = filter_input( INPUT_GET, 'key', FILTER_SANITIZE_STRING );
 			$order_id    = wc_get_order_id_by_order_key( $key );
 			$transaction = get_post_meta( $order_id, 'transaction', true );
-			wp_enqueue_script( 'snap-finance-sdk', 'https://js-qa-dev.snapfinance.com/v1/snap-sdk.js', array( 'jquery' ), time(), true );
+			wp_enqueue_script( 'snap-finance-sdk', 'https://js.snapfinance.com/v1/snap-sdk.js', array( 'jquery' ), time(), true );
 			wp_enqueue_style( 'snap-finance', plugin_dir_url( __FILE__ ) . '/assets/css/snap-finance-checkout.css', array(), '1.0.0', 'all' );
 			wp_enqueue_script( 'snap-finance-application', plugin_dir_url( __FILE__ ) . '/assets/js/snap-finance-application.js', array( 'jquery' ), time(), true );
 			wp_localize_script( 'snap-finance-application', 'snap_finance', array(
