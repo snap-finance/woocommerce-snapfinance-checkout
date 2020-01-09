@@ -73,3 +73,7 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 -  Resolved Internet explorer button rendering issue.
 
 -  Other bug fixes.
+
+### 1.0.2
+-  Changes in JS inherited from Snap SDK.
+-  Minor bug fixes.
