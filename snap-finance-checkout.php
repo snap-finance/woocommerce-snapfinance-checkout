@@ -8,14 +8,14 @@
  * that starts the plugin.
  *
  * @link              snapfinance.com
- * @since             1.0.1
+ * @since             1.0.2
  * @package           snap_finance_checkout
  *
  * @wordpress-plugin
  * Plugin Name:       Snap Finance Checkout
  * Plugin URI:        https://developer.snapfinance.com/woocommerce/
  * Description:       No credit needed. Financing up to $3,000. Easy to apply. Get fast, flexible financing for the things you need.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Snap Finance
  * Author URI:        https://snapfinance.com/
  * License:           GPL-2.0+
