@@ -8,14 +8,14 @@
  * that starts the plugin.
  *
  * @link              snapfinance.com
- * @since             1.0.2
+ * @since             1.0.3
  * @package           snap_finance_checkout
  *
  * @wordpress-plugin
  * Plugin Name:       Snap Finance Checkout
  * Plugin URI:        https://developer.snapfinance.com/woocommerce/
  * Description:       No credit needed. Financing up to $3,000. Easy to apply. Get fast, flexible financing for the things you need.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Snap Finance
  * Author URI:        https://snapfinance.com/
  * License:           GPL-2.0+
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WOOCOMMERCE_GATEWAY_SNAP_FINANCE_VERSION', '1.0.1' );
+define( 'WOOCOMMERCE_GATEWAY_SNAP_FINANCE_VERSION', '1.0.3' );
 
 /*
  * This action hook registers our PHP class as a WooCommerce payment gateway
@@ -46,10 +46,40 @@ function snap_finance_add_gateway_class( $gateways ) {
 	return $gateways;
 }
 
+$activated = true;
+if ( function_exists( 'is_multisite' ) && is_multisite() ) {
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+	if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+		$activated = false;
+	}
+} else {
+	if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+		$activated = false;
+	}
+}
 /*
  * The class itself, please note that it is inside plugins_loaded action hook
  */
-add_action( 'plugins_loaded', 'snap_finance_init_gateway_class' );
+if ( $activated ) { 
+	add_action( 'plugins_loaded', 'snap_finance_init_gateway_class' );
+} else {	
+	if ( !function_exists( 'deactivate_plugins' ) ) { 
+		require_once ABSPATH . '/wp-admin/includes/plugin.php'; 
+	} 
+	deactivate_plugins( plugin_basename( __FILE__ ) );
+	add_action( 'admin_notices', 'snap_finance_checkout_error_notice' );
+}
+
+function snap_finance_checkout_error_notice() {
+	?>
+	<div class="error notice is-dismissible">
+		<p><?php _e( 'Woocommerce is not activated, Please activate Woocommerce first to install Snap Finance Checkout.', 'snap-finance-checkout' ); ?></p>
+	</div>
+	<style>
+		#message{display:none;}
+	</style>
+	<?php
+}
 
 function snap_finance_add_notes() {
 	$order_id = filter_input( INPUT_POST, 'orderId', FILTER_VALIDATE_INT );
@@ -185,6 +215,8 @@ function get_snap_finance_token() {
 }
 
 function snap_finance_init_gateway_class() {
+
+
 	add_filter( 'wc_get_template', 'wc_snap_finance_payment_template', 999, 5 );
 	add_action( 'wp_ajax_snap_finance_complete_payment', 'snap_finance_complete_payment' );
 	add_action( 'wp_ajax_nopriv_snap_finance_complete_payment', 'snap_finance_complete_payment' );

@@ -77,3 +77,7 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 ### 1.0.2
 -  Changes in JS inherited from Snap SDK.
 -  Minor bug fixes.
+
+### 1.0.3
+-  Updated error handling condition which checks if woocommerce is installed or not.
+-  Updated JavaScript code for better functionality.
