@@ -81,3 +81,11 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 ### 1.0.3
 -  Updated error handling condition which checks if woocommerce is installed or not.
 -  Updated JavaScript code for better functionality.
+
+### 1.0.4
+-  Updated Steps for checkout.
+-  Added validation to check token is generated before checkout or not.
+-  Minor bug fixes on UI.
+
+
+ 

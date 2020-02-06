@@ -8,14 +8,14 @@
  * that starts the plugin.
  *
  * @link              snapfinance.com
- * @since             1.0.3
+ * @since             1.0.4
  * @package           snap_finance_checkout
  *
  * @wordpress-plugin
  * Plugin Name:       Snap Finance Checkout
  * Plugin URI:        https://developer.snapfinance.com/woocommerce/
  * Description:       No credit needed. Financing up to $3,000. Easy to apply. Get fast, flexible financing for the things you need.
- * Version:           1.0.3
+ * Version:           1.0.4
  * Author:            Snap Finance
  * Author URI:        https://snapfinance.com/
  * License:           GPL-2.0+
@@ -33,7 +33,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WOOCOMMERCE_GATEWAY_SNAP_FINANCE_VERSION', '1.0.3' );
+define( 'WOOCOMMERCE_GATEWAY_SNAP_FINANCE_VERSION', '1.0.4' );
 
 /*
  * This action hook registers our PHP class as a WooCommerce payment gateway
@@ -240,7 +240,7 @@ function snap_finance_init_gateway_class() {
 		if ( $payment_method ) {
 			if ( function_exists( 'is_order_received_page' ) &&
 				is_order_received_page() && $payment_method == 'snap_finance' && strpos( $title, 'Order received' ) !== false ) {
-				$title = 'Click on "checkout with snap" to proceed';
+				$title = '';
 		}
 	}
 
@@ -367,7 +367,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 
 			// Method with all the options fields
 			$this->init_form_fields();
-			$this->order_button_text = __( 'Review Order', 'snap-finance-checkout' );
+			$this->order_button_text = __( 'Checkout With Snap', 'snap-finance-checkout' );
 			// Load the settings.
 			$this->init_settings();
 			$this->title             = $this->get_option( 'title' );
@@ -481,6 +481,18 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 
 			return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
 		}
+
+		 /*
+	     * Fields validation, more in Step 5
+	     */
+		 public function validate_fields() {
+		 	$snap_finance_token       = get_snap_finance_token();
+		 	if ( empty( $snap_finance_token ) ) {
+		 		wc_add_notice('Invalid Token, Kindly check snap finance checkout settings.', 'error');	
+		 	}
+		 	
+		 	return false;
+		 }
 
 		/**
 		 * You will need it if you want your custom credit card form, Step 4 is about it

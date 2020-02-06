@@ -23,7 +23,7 @@ defined('ABSPATH') || exit;
 
         <div class="vertical-divider"></div>
 
-        <div>
+        <div style="display: none;">
             <div class="payment-option-label">
 
                 <label>

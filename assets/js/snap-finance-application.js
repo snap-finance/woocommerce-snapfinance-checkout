@@ -6,6 +6,9 @@ const appId = document.getElementById('applicationId');
 // CHECKOUT BUTTON
 snap.init(snap_finance.token);
 
+jQuery(document).ready( function() {
+	jQuery('#snap-checkout-button button').click();
+} );
 
 // CHECKOUT BUTTON
 snap.checkoutButton({

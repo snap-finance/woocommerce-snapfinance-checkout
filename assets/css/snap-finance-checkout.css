@@ -12,7 +12,7 @@
 	margin:15px;
 }
 .payment-option-label label {
-	float: left;	
+	float: none;	
 }
 .payment-option-label label input[type="radio"]:checked+div {
 	background: #fff;
