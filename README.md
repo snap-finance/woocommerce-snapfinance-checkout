@@ -87,5 +87,5 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 -  Added validation to check token is generated before checkout or not.
 -  Minor bug fixes on UI.
 
-
- 
+### 1.0.5
+-  Removed Checkout button settings.
