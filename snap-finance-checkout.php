@@ -279,7 +279,7 @@ function wc_snap_finance_style() {
 			$color                = 'dark';
 			$height               = 55;
 			$shape                = 'pill';
-			if ( ! empty( $snap_finance_setting['snap_finance_client_color'] ) ) {
+			/*if ( ! empty( $snap_finance_setting['snap_finance_client_color'] ) ) {
 				$color = $snap_finance_setting['snap_finance_client_color'];
 			}
 			if ( ! empty( $snap_finance_setting['snap_finance_client_shape'] ) ) {
@@ -287,7 +287,7 @@ function wc_snap_finance_style() {
 			}
 			if ( ! empty( $snap_finance_setting['snap_finance_client_height'] ) ) {
 				$height = $snap_finance_setting['snap_finance_client_height'];
-			}
+			}*/
 			$key = filter_input( INPUT_GET, 'key', FILTER_SANITIZE_STRING );
 			$order_id    = wc_get_order_id_by_order_key( $key );
 			$transaction = get_post_meta( $order_id, 'transaction', true );
@@ -455,7 +455,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title' => __('Client Secret Live Key', 'snap-finance-checkout'),
 					'type'  => 'text'
 				),
-				'snap_finance_client_color'          => array(
+				/*'snap_finance_client_color'          => array(
 					'title'   => __('Checkout Button Color', 'snap-finance-checkout'),
 					'type'    => 'select',
 					'options' => array( 'light' => __('Light', 'snap-finance-checkout'), 'dark' => __('Dark', 'snap-finance-checkout') ),
@@ -471,7 +471,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title'   => __('Checkout Button Height', 'snap-finance-checkout'),
 					'type'    => 'number',
 					'default' => '55',
-				),
+				),*/
 			);
 		}
 
