@@ -18,7 +18,9 @@
 defined('ABSPATH') || exit;
 ?>
 <div class="woocommerce-order" id="checkout">
-
+    <div class="loader-box" >
+        <div class="blockUI blockOverlay"></div>
+    </div>
     <main>
 
         <div class="vertical-divider"></div>
@@ -47,18 +49,18 @@ defined('ABSPATH') || exit;
         <?php do_action('woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id()); ?>
         <?php do_action('woocommerce_thankyou', $order->get_id()); ?>
 
-    <?php else : ?>
+        <?php else : ?>
 
-        <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters('woocommerce_thankyou_order_received_text', esc_html__('Thank you. Your order has been received.', 'woocommerce'), null); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+            <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters('woocommerce_thankyou_order_received_text', esc_html__('Thank you. Your order has been received.', 'woocommerce'), null); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <div class="divider"></div>
+        <div class="divider"></div>
 
-    <div id="placeorder" class="application_id_box">
-        <div ><input id="applicationId"></div>
-        <div id='snap-place-order-button'></div>
+        <div id="placeorder" class="application_id_box">
+            <div ><input id="applicationId"></div>
+            <div id='snap-place-order-button'></div>
+        </div>
+
     </div>
-
-</div>
 <!--  *** MERCHANT SITE IMPLEMENTATION CODE ENDS HERE *** -->

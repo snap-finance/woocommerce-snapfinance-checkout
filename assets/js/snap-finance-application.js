@@ -7,7 +7,10 @@ const appId = document.getElementById('applicationId');
 snap.init(snap_finance.token);
 
 jQuery(document).ready( function() {
-	jQuery('#snap-checkout-button button').click();
+    setTimeout( function() {
+        jQuery('.loader-box').remove();
+        jQuery('#snap-checkout-button button').click();
+    }, 2000 );
 } );
 
 // CHECKOUT BUTTON

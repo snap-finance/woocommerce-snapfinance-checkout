@@ -89,3 +89,6 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 
 ### 1.0.5
 -  Removed Checkout button settings.
+
+### 1.0.6
+-  Changes in the logic for API calls made to snap server.
