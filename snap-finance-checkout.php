@@ -594,10 +594,12 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			// Empty cart
 			$woocommerce->cart->empty_cart();
 
+			$redirect_url = $this->get_return_url( $order );
+			$redirect_url = str_replace( 'key', 'payment_method=snap_finance&key', $redirect_url );
 			// Redirect to the thank you page
 			return array(
 				'result'   => 'success',
-				'redirect' => $this->get_return_url( $order ) . '&payment_method=snap_finance'
+				'redirect' =>  $redirect_url
 			);
 			/*
 			 * Array with parameters for API interaction

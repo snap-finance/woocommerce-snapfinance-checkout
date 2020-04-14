@@ -13,6 +13,17 @@ jQuery(document).ready( function() {
     }, 2000 );
 } );
 
+function getCurrentUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 // CHECKOUT BUTTON
 snap.checkoutButton({
     style: {
@@ -46,11 +57,12 @@ snap.checkoutButton({
 
             jQuery.post(snap_finance.ajaxurl, data, function (response) {
                 var url_link = window.location.href;
+
                 url_link = url_link.split('payment_method');
-                window.location.href = url_link[0].slice(0, -1);
+                window.location.href = url_link[0].slice(0, -1)+'?key='+getCurrentUrlVars()["key"];
             });
         }
-      
+
     },
 
     onDenied: function (data, actions) {

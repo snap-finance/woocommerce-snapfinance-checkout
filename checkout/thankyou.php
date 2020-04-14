@@ -43,10 +43,13 @@ defined('ABSPATH') || exit;
         <div class="divider"><span></span></div>
 
     </main>
+<h3>Status:Incomplete, awaiting completion of payment method.</h3>
     <?php if ($order) :
 
         do_action('woocommerce_before_thankyou', $order->get_id()); ?>
+
         <?php do_action('woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id()); ?>
+        
         <?php do_action('woocommerce_thankyou', $order->get_id()); ?>
 
         <?php else : ?>
