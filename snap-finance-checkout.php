@@ -8,14 +8,14 @@
  * that starts the plugin.
  *
  * @link              snapfinance.com
- * @since             1.0.6
+ * @since             1.0.7
  * @package           snap_finance_checkout
  *
  * @wordpress-plugin
  * Plugin Name:       Snap Finance Checkout
  * Plugin URI:        https://developer.snapfinance.com/woocommerce/
  * Description:       No credit needed. Financing up to $3,000. Easy to apply. Get fast, flexible financing for the things you need.
- * Version:           1.0.6
+ * Version:           1.0.7
  * Author:            Snap Finance
  * Author URI:        https://snapfinance.com/
  * License:           GPL-2.0+
@@ -230,21 +230,32 @@ function snap_finance_init_gateway_class() {
 	add_filter( 'the_title', 'snap_finance_title_change' );
 	add_action( "wp_ajax_reset_token", "snap_finance_reset_token" );
 	add_action( 'init', 'snap_finance_load_textdomain' );
-
-	function snap_finance_load_textdomain() {
-		load_plugin_textdomain( 'snap-finance-checkout', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-	}
-
-	function snap_finance_title_change( $title ) {
+	add_action( 'woocommerce_before_thankyou', 'after_complete_payment' );
+	
+	function after_complete_payment( $order_id ){
 		$payment_method = filter_input( INPUT_GET, 'payment_method', FILTER_SANITIZE_STRING );
-		if ( $payment_method ) {
+		if ( ! $payment_method ) {
 			if ( function_exists( 'is_order_received_page' ) &&
-				is_order_received_page() && $payment_method == 'snap_finance' && strpos( $title, 'Order received' ) !== false ) {
-				$title = '';
+				is_order_received_page() ) {
+				echo '<h3><span class="status-title">Status: </span><span class="status-yes">Snap Lease signed and confirmed.</span></h3>';
 		}
 	}
 
-	return $title;
+}
+function snap_finance_load_textdomain() {
+	load_plugin_textdomain( 'snap-finance-checkout', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+
+function snap_finance_title_change( $title ) {
+	$payment_method = filter_input( INPUT_GET, 'payment_method', FILTER_SANITIZE_STRING );
+	if ( $payment_method ) {
+		if ( function_exists( 'is_order_received_page' ) &&
+			is_order_received_page() && $payment_method == 'snap_finance' && strpos( $title, 'Order received' ) !== false ) {
+			$title = '';
+	}
+}
+
+return $title;
 }
 
 function snap_finance_application_id_details( $total_rows, $order, $tax_display ) {
@@ -272,6 +283,7 @@ function snap_finance_application_id_details( $total_rows, $order, $tax_display 
 
 function wc_snap_finance_style() {
 	$payment_method = filter_input( INPUT_GET, 'payment_method', FILTER_SANITIZE_STRING );
+	wp_enqueue_style( 'snap-finance', plugin_dir_url( __FILE__ ) . '/assets/css/snap-finance-checkout.css', array(), '1.0.0', 'all' );
 	if ( $payment_method ) {
 		if ( $payment_method == 'snap_finance' ) {
 			$snap_finance_setting = get_option( 'woocommerce_snap_finance_settings' );
@@ -291,8 +303,7 @@ function wc_snap_finance_style() {
 			$key = filter_input( INPUT_GET, 'key', FILTER_SANITIZE_STRING );
 			$order_id    = wc_get_order_id_by_order_key( $key );
 			$transaction = get_post_meta( $order_id, 'transaction', true );
-			wp_enqueue_script( 'snap-finance-sdk', 'https://js.snapfinance.com/v1/snap-sdk.js', array( 'jquery' ), time(), true );
-			wp_enqueue_style( 'snap-finance', plugin_dir_url( __FILE__ ) . '/assets/css/snap-finance-checkout.css', array(), '1.0.0', 'all' );
+			wp_enqueue_script( 'snap-finance-sdk', 'https://js.snapfinance.com/v1/snap-sdk.js', array( 'jquery' ), time(), true );			
 			wp_enqueue_script( 'snap-finance-application', plugin_dir_url( __FILE__ ) . '/assets/js/snap-finance-application.js', array( 'jquery' ), time(), true );
 			wp_localize_script( 'snap-finance-application', 'snap_finance', array(
 				'ajaxurl'     => admin_url( 'admin-ajax.php' ),

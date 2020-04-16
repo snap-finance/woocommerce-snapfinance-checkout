@@ -1,5 +1,16 @@
+span.status-title {
+    font-weight: 700;
+}
+span.status-no {
+    color: #ff0000;
+	font-weight: 400;
+}
+span.status-yes {
+    color: #009c31;
+	font-weight: 400;
+}
 #checkout .loader-box {
-	.position: fixed;
+	position: fixed;
 	left: 0;
 	right: 0;
 	bottom: 0;
