@@ -56,19 +56,47 @@ snap.checkoutButton({
             };
 
             jQuery.post(snap_finance.ajaxurl, data, function (response) {
-                var url_link = window.location.href;
-
-                url_link = url_link.split('payment_method');
-                window.location.href = url_link[0].slice(0, -1)+'?key='+getCurrentUrlVars()["key"];
+                setTimeout( function(){
+                    window.location.href = snap_finance.thankyou_url;
+                }, 4000 );
+                
             });
         }
 
     },
+    onCanceled: function(data, actions) {
+        console.log(data);
+        console.log('onCanceled');
+        var data = {
+            'action': 'snap_finance_update_status',
+            'orderId': snap_finance.order_id,
+            'status': 'cancelled',
+            'application': data
+        };
 
+        jQuery.post(snap_finance.ajaxurl, data, function (response) {
+
+        });
+        window.location.href = snap_finance.wc_get_cart_url;
+        
+    },
     onDenied: function (data, actions) {
         if (data.applicationId) {
+
+            appId.value = data.applicationId;
+            var data = {
+                'action': 'snap_finance_order_failed',
+                'orderId': snap_finance.order_id,
+                'applicationId': data.applicationId,
+                'application': data
+            };
+
+            jQuery.post(snap_finance.ajaxurl, data, function (response) {
+                
+            });
+
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Place order failed for application: ' + data.applicationId + '</p>');
+            jQuery('#checkout').before('<p class="wc_snap_error" >Place order failed for application: ' + data.applicationId + ' was denied.</p>');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
@@ -84,6 +112,8 @@ snap.checkoutButton({
                 url_link = url_link.split('payment_method');
 
             });
+
+            
         }
         // Snap funding was denied (i.e. approval was less than shopping cart amount)
         // Snap will have notified the customer of this in a separate window.

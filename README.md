@@ -97,3 +97,9 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 -  Tested Plugin with both WordPress 5.4 and Woocommerce 4.0
 -  Modified Array to the function that was reading payment method from checkout page
 -  Updated order status message on order details page after checkout.
+
+### 1.0.8
+-  Updated Checkout Flow for better user experience
+-  Enabled Tracking facility for disabled plugin
+-  Updated order status messages
+-  Checkout Button and Option selection from snap directory
