@@ -112,14 +112,14 @@ function snap_finance_complete_order( $order_id ) {
 	);
 	$response = wp_remote_post( $api_url, $args );
 	if ( is_wp_error( $response ) ) {
-		update_post_meta( $order_id, 'final_responce', '' );
+		update_post_meta( $order_id, '_final_responce', '' );
 	} else {
 		if ( isset( $response['body'] ) ) {
 			$response = $response['body'];
 		} else {
 			$response = '';
 		}
-		update_post_meta( $order_id, 'final_responce', $response );
+		update_post_meta( $order_id, '_final_responce', $response );
 	}
 	
 }

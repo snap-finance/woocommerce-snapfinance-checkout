@@ -1,12 +1,12 @@
 span.status-title {
-    font-weight: 700;
+	font-weight: 700;
 }
 span.status-no {
-    color: #ff0000;
+	color: #ff0000;
 	font-weight: 400;
 }
 span.status-yes {
-    color: #009c31;
+	color: #009c31;
 	font-weight: 400;
 }
 #checkout .loader-box {
@@ -69,7 +69,7 @@ span.status-yes {
 	background-color: transparent;
 	background-image: linear-gradient(220deg, #174e90 0%, #174e90 100%);
 	top: -10px;
-    right: -10px;
+	right: -10px;
 }
 .payment-option-label label div {
 	position: relative;
@@ -114,4 +114,12 @@ p.wc_snap_error {
 	border-radius: 5px;
 	background: antiquewhite;
 	color: #F44336;
+}
+.woocommerce .snap-finace-button,
+.woocommerce .snap-finace-button:hover {
+	color: transparent !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-color: transparent !important;
+    background-size: 100% 100%; 
 }

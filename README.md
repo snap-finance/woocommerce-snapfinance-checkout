@@ -46,60 +46,43 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 
 ## Changelog
 
-### 1.0.0
 
--   Change in plugin description.
-
--   Change in endpoint API calls.
-
--   Access token encoded in url.
-
--   Change in javascript url.
-
--   Read only field for plugin title and description.
-
--   Updating cache of the plugin during the change of client id and seceret id. 
-
--   Change in Plugin description.
-
--   Updated validation message in parameters of plugin setting.
-
--   Updated code for better cache management of client id and client seceret key.
--   Updated product array price that was submitted in js.
+### 1.0 
+Intial release.
 
 ### 1.0.1
--  Updated plugin structure according to WordPress marketplace standards
-.
--  Resolved Internet explorer button rendering issue.
-
--  Other bug fixes.
+Added error handling in API response
 
 ### 1.0.2
--  Changes in JS inherited from Snap SDK.
--  Minor bug fixes.
+Changes in JS inherited from Snap SDK.
+Minor bug fixes.
 
 ### 1.0.3
--  Updated error handling condition which checks if woocommerce is installed or not.
--  Updated JavaScript code for better functionality.
+Updated error handling condition which checks if woocommerce is installed or not.
+Updated JavaScript code for better functionality.
 
 ### 1.0.4
--  Updated Steps for checkout.
--  Added validation to check token is generated before checkout or not.
--  Minor bug fixes on UI.
+Update Steps for checkout.
+Added validation to check token is generated before checkout or not 
+Minor bug fixes 
 
 ### 1.0.5
--  Removed Checkout button settings.
+Removed Checkout button settings
 
 ### 1.0.6
--  Changes in the logic for API calls made to snap server.
+Changes in the logic for API calls made to snap server
 
 ### 1.0.7
--  Tested Plugin with both WordPress 5.4 and Woocommerce 4.0
--  Modified Array to the function that was reading payment method from checkout page
--  Updated order status message on order details page after checkout.
+Tested Plugin with wordpress 5.4 and Woocommerce 4
+Changed Array function  that was reading payment method from checkout page
+Update Order status message on Order Details Page after checkout.
 
 ### 1.0.8
--  Updated Checkout Flow for better user experience
--  Enabled Tracking facility for disabled plugin
--  Updated order status messages
--  Checkout Button and Option selection from snap directory
+Updated Checkout Flow for better user experience
+Checout Button and Option selection from snap directory
+Enabled Tracking facility for disabled plugin
+Updated order status messages 
+
+### 1.0.9
+Updated plugin code to store banner url in DB at the time of update
+Structured Javascript file to avoid javascript clash

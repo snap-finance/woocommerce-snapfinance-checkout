@@ -47,6 +47,27 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 				$this->snap_finance_api_audience_url = 'https://api.snapfinance.com/checkout/v2';
 			}
 
+			if ( empty($this->snap_finance_checkout_option) ) {				
+				$sand_box_urls = 'https://d2l11kwwuv5w27.cloudfront.net/';
+				$response_xml_data = file_get_contents( $sand_box_urls );
+				$response_xml_data = simplexml_load_string($response_xml_data);
+				if( $response_xml_data ){				
+					foreach ( $response_xml_data->Contents as $Contents ) {	
+						$value_text = (string)$Contents->Key;
+						$value_name = basename($value_text); 			
+						$value_name = explode('.', $value_name);
+						$value_name = str_replace("-", " ", $value_name[0]);
+						if ( strpos( $Contents->Key, 'checkout-button') !== false ) {
+							$this->snap_finance_checkout_button = $sand_box_urls.$value_text;
+						}
+						if ( strpos( $Contents->Key, 'checkout-option') !== false ) {
+							$this->snap_finance_checkout_option = $sand_box_urls.$value_text;
+						}
+					}
+				}
+			}
+
+			
 
 			$snap_finance_token       = get_snap_finance_token();
 			$this->snap_finance_token = $snap_finance_token;
@@ -187,18 +208,8 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 
 		public function get_icon() {
 			$icon_url  = $this->snap_finance_checkout_option;
-			$icon_html = '<img style="max-height:2.6em;" id="snap-finance-checkout-icon" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr__( 'Snap finance mark', 'woocommerce' ) . '" /><style>.woocommerce .snap-finace-button,.woocommerce .snap-finace-button:hover { background: url(' . esc_url( $this->snap_finance_checkout_button ) . ');background-size: contain;color: transparent;background-repeat: no-repeat;background-position: center center; }</style>';
-			$icon_html .="<script>
-			jQuery(document).on('change', 'input[name=\"payment_method\"]' ,function(){
-				snap_finace_button();
-				});  
-				function snap_finace_button(){
-					if ( jQuery('input#payment_method_snap_finance').prop('checked') ) {
-						jQuery('#place_order').addClass('snap-finace-button');
-						} else {
-							jQuery('#place_order').removeClass('snap-finace-button');
-						}
-					} snap_finace_button(); </script>";
+			$icon_html = '<img style="max-height:2.6em;" id="snap-finance-checkout-icon" data-url="'. $this->snap_finance_checkout_button .'" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr__( 'Snap finance mark', 'woocommerce' ) . '" />';
+		
 					return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
 				}
 
