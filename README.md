@@ -33,7 +33,7 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
     5.  Client ID – Enter Client ID which you will receive from your developer account on Snap Finance Website.
     6.  Client Secret Key – Enter Client Secret Key which you will receive from your developer account on Snap Finance Website.
     7.  Now click save and customer will get Snap Finance option during the checkout process
-    8.  Now click on place order button and you will see a button labeled as “Checkout with snap” Click on blue button now.
+    8.  Now click on place order button and you will see a button labeled as “Checkout with snap�? Click on blue button now.
     9.  This will redirect you to snap finance url for further procedure so  you can complete order.
 
 3.  Order Complete Api Callback
