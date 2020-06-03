@@ -63,7 +63,7 @@ Updated JavaScript code for better functionality.
 
 ### 1.0.4
 Update Steps for checkout.
-Added validation to check token is generated before checkout or not 
+Added validation to check token is generated before checkout or not. 
 Minor bug fixes 
 
 ### 1.0.5
@@ -73,16 +73,16 @@ Removed Checkout button settings
 Changes in the logic for API calls made to snap server
 
 ### 1.0.7
-Tested Plugin with wordpress 5.4 and Woocommerce 4
-Changed Array function  that was reading payment method from checkout page
+Tested Plugin with wordpress 5.4 and Woocommerce 4.
+Changed Array function  that was reading payment method from checkout page.
 Update Order status message on Order Details Page after checkout.
 
 ### 1.0.8
-Updated Checkout Flow for better user experience
-Checout Button and Option selection from snap directory
-Enabled Tracking facility for disabled plugin
-Updated order status messages 
+Updated Checkout Flow for better user experience.
+Checkout Button and Option selection from snap directory.
+Enabled Tracking facility for disabled plugin.
+Updated order status messages
 
 ### 1.0.9
-Updated plugin code to store banner url in DB at the time of update
-Structured Javascript file to avoid javascript clash
+Updated plugin code to store banner url in DB at the time of update.
+Structured Javascript file to avoid javascript clash.
