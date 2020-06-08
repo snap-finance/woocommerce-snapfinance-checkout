@@ -1,4 +1,4 @@
-﻿# WooCommerce Snapfinance checkout
+## WooCommerce Snapfinance checkout
 
 ## Description
 
