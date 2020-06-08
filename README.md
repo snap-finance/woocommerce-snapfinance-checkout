@@ -48,41 +48,45 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 
 
 ### 1.0 
-Intial release.
+* Initial release.
 
 ### 1.0.1
-Added error handling in API response
+* Added error handling in API response
 
 ### 1.0.2
-Changes in JS inherited from Snap SDK.
-Minor bug fixes.
+* Changes in JS inherited from Snap SDK.
+* Minor bug fixes.
 
 ### 1.0.3
-Updated error handling condition which checks if woocommerce is installed or not.
-Updated JavaScript code for better functionality.
+* Updated error handling condition which checks if woocommerce is installed or not.
+* Updated JavaScript code for better functionality.
 
 ### 1.0.4
-Update Steps for checkout.
-Added validation to check token is generated before checkout or not. 
-Minor bug fixes 
+* Update Steps for checkout.
+* Added validation to check token is generated before checkout or not 
+* Minor bug fixes 
 
 ### 1.0.5
-Removed Checkout button settings
+* Removed Checkout button settings
 
 ### 1.0.6
-Changes in the logic for API calls made to snap server
+* Changes in the logic for API calls made to snap server
 
 ### 1.0.7
-Tested Plugin with wordpress 5.4 and Woocommerce 4.
-Changed Array function  that was reading payment method from checkout page.
-Update Order status message on Order Details Page after checkout.
+* Tested Plugin with Wordpress 5.4 and Woocommerce 4
+* Changed Array function  that was reading payment method from checkout page
+* Update Order status message on Order Details Page after checkout.
 
 ### 1.0.8
-Updated Checkout Flow for better user experience.
-Checkout Button and Option selection from snap directory.
-Enabled Tracking facility for disabled plugin.
-Updated order status messages
+* Updated Checkout Flow for better user experience
+* Checkout Button and Option selection from snap directory
+* Enabled Tracking facility for disabled plugin
+* Updated order status messages 
 
 ### 1.0.9
-Updated plugin code to store banner url in DB at the time of update.
-Structured Javascript file to avoid javascript clash.
+* Updated plugin code to store banner URL in DB at the time of update
+* Structured JavaScript file to avoid JavaScript clash
+
+### 1.0.10
+* Removed Dynamic button on checkout page
+* Updated plugin description

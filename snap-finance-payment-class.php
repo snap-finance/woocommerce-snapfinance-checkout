@@ -11,7 +11,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			$this->icon               = ''; // URL of the icon that will be displayed on checkout page near your gateway name
 			$this->has_fields         = true; // in case you need a custom credit card form
 			$this->method_title       = 'Snap Finance Checkout';
-			$this->method_description = 'No credit needed. Financing up to $3,000. Easy to apply. Get fast, flexible financing for the things you need.'; // will be displayed on the options page
+			$this->method_description = 'Available to all credit types.  Financing between $250 to $3,000. Get Fast, Flexible Financing now!'; // will be displayed on the options page
 			// gateways can support subscriptions, refunds, saved payment methods,
 			// but in this tutorial we begin with simple payments
 			$this->supports = array(
@@ -149,7 +149,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title'       => __('Description','snap-finance-checkout'),
 					'type'        => 'textarea',
 					'description' => __('This controls the description which the user sees during checkout.', 'snap-finance-checkout'),
-					'default'     => 'No credit needed. Financing up to $3,000. Easy to apply. Get fast, flexible financing for the things you need.',
+					'default'     => 'Available to all credit types.  Financing between $250 to $3,000. Get Fast, Flexible Financing now!',
 				),
 				'snap_finance_mode'                  => array(
 					'title'       => __('Environment', 'snap-finance-checkout'),
@@ -166,13 +166,13 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title' => __('Client Secret Sandbox Key', 'snap-finance-checkout'),
 					'type'  => 'password'
 				),
-				'snap_finance_client_sandbox_checkout_button'                  => array(
+				/*'snap_finance_client_sandbox_checkout_button'                  => array(
 					'title'       => __('Sandbox Checkout Button Logo', 'snap-finance-checkout'),
 					'type'        => 'select',
 					'options'     => $checkout_button,
 					'description' => '',
 					'class'		  => 'logo-img',	
-				),
+				),*/
 				'snap_finance_client_sandbox_checkout_option'                  => array(
 					'title'       => __('Sandbox Checkout Option Logo', 'snap-finance-checkout'),
 					'type'        => 'select',
@@ -188,13 +188,13 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title' => __('Client Secret Live Key', 'snap-finance-checkout'),
 					'type'  => 'text'
 				),
-				'snap_finance_client_live_checkout_button'                  => array(
+				/*'snap_finance_client_live_checkout_button'                  => array(
 					'title'       => __('Live Checkout Button Logo', 'snap-finance-checkout'),
 					'type'        => 'select',
 					'options'     => $live_checkout_button,
 					'description' => '',
 					'class'		  => 'logo-img',
-				),
+				),*/
 				'snap_finance_client_live_checkout_option'                  => array(
 					'title'       => __('Live Checkout Option Logo', 'snap-finance-checkout'),
 					'type'        => 'select',

@@ -68,9 +68,9 @@ function snap_finance_application_id_details( $total_rows, $order, $tax_display 
 function wc_snap_finance_style() {
 	$payment_method = filter_input( INPUT_GET, 'payment_method', FILTER_SANITIZE_STRING );
 	wp_enqueue_style( 'snap-finance', plugin_dir_url( __FILE__ ) . 'assets/css/snap-finance-checkout.css', array(), '1.0.0', 'all' );
-	if ( is_checkout() ) {
+	/*if ( is_checkout() ) {
 		wp_enqueue_script( 'snap-finance-front-application', plugin_dir_url( __FILE__ ) . '/assets/js/snap-finance-front-checkout.js', array( 'jquery' ), time(), true );
-	}
+	}*/
 	if ( $payment_method ) {
 		if ( $payment_method == 'snap_finance' ) {
 			global $wpdb;
