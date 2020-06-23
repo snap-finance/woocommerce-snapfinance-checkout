@@ -1,54 +1,79 @@
-## WooCommerce Snapfinance checkout
+﻿# WooCommerce Snapfinance checkout
 
 ## Description
 
-Snap Finance checkout provides eCommerce merchants with a set of APIs to offer an in-context finance option to their customers at the time of checkout.
-The Snap JavaScript library, aka "snap-sdk (client)", is a script provided to eCommerce merchants as "snap-sdk.js", for inclusion in their website. The script enables the merchant to include a Snap Checkout button on their website, enabling their customers to use Snap to finance their online purchase.
+Snap Finance is a lease-to-own financing provider that empowers credit-challenged shoppers with the buying power to get what they need now, and then allows them to make affordable payments to pay over time. Snap was founded on the principle that financing should be accessible to everyone. It's easy to apply, and Snap's sophisticated algorithms don’t rely on FICO scores when considering an approval. Shoppers know in seconds if they've been approved.  
 
-Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your WooCommerce powered eCommerce store to offer Lease to Buy finance options.
+Snap also believes in complete transparency, so a shopper knows the cost of their lease up front, with no surprises or hidden costs. With Snap, shoppers have flexible payment options, from the standard full-term lease of 12 months to the 100-Day Payment option, which provides a considerable reduction in overall cost.  
+
+Snap Finance wants their Merchant Partners to thrive while supporting their customers.  In 2019, Snap drove $890M in merchant sales, with over 870K lease applications completed. Some merchants have seen up to an 80% approval rate.
+
+Attract more customers and drive more sales for your business by offering a financing option to credit-challenged shoppers that would otherwise walk away empty-handed.   
+
+The Snap Finance Checkout extension will be seamlessly embedded into your checkout flow as a payment option, where Snap handles the application approval, payment processing, and servicing of the lease.  
+
+ 
+
+## Account & Pricing 
+To offer Snap Finance Checkout on your website, you will have to first fill out our [inquiry form](https://snapfinance.com/ecommerce-inquiry). You will go through a vetting process to get approved as a Snap Finance partner and have a merchant account created. The Snap Finance Checkout is free to download and install, but transaction fees on customer orders may apply and will vary from merchant to merchant based on merchant type and level of partnership.   
+
+ 
+
+## Features 
+* Snap Finance continues to drive merchant business. In 2019, Snap helped drive over $890M in sales for our merchants.
+* Merchants who use Snap see an approval rate of up to 80%.
+* Snap approves up to $5,000.
+* Snap merchants rated their experience with an average NPS of 84. 
+* Snap offers a 100-Day Cash Payoff option that allows a shopper to pay off their lease in 100 days, paying a small processing fee in addition to their cost of goods.
+* Snap takes on the full responsibility of servicing the customer’s lease and mitigating fraud.
+ 
+
+## Security 
+No PCI data will be transmitted between WooCommerce Merchants and Snap Finance. 
+
+The Snap Finance Checkout extension will be added as a payment type on your checkout page, allowing authorization and capture to be processed through WooCommerce.  
+
+When shoppers select Snap Finance as their financing source, they will be guided through a separate web experience hosted by Snap Finance using a popup modal, where they will go through an application process to get approved for a lease by Snap Finance to finance their purchase. Once lease application is approved and signed, shoppers will be taken back to the merchant checkout page to complete their purchase.
 
 ## Installation
 
-### From WordPress Admin
+### Step 1
+1. Login to WordPress Admin panel and go to Add New Plugin.
+2. Then click on Upload Plugin.
+3. Select the downloaded zip and click Install Now.
+4. Click to Activate Plugin
+#### Manual Installation
+* Pull the code from the repository and upload the contents to a folder in your '<wordpress-root>/wp-content/plugins' directory.
+* Login to WordPress admin and go to Plugins.
+* Find the Snap Finance Checkout plugin and click Activate.
+* Proceed to Plugin Configuration
 
-1.  Download the zip from Github.
-2.  Login to WordPress admin and go to Add New Plugin.
-3.  Then click on Upload Plugin and select the downloaded zip and click Install Now.
+### Step 2
+Plugin Configuration
+1. Login to WordPress admin and open WooCommerce Settings.
+2. Click on payment tab and then on ‘Snap Finance’ plugin.
+3. Enable ‘Snap Finance Checkout’ plugin toggle.
+4. Click on ‘Snap Finance Checkout’ plugin.
 
-### Manual Installation
+    1.  **Enable/Disable** – Tick to enable the module.
+    2.  **Environment:** Select the environment for plugin whether it is sandbox or live (production). You need to enter                 
+Client ID and Secret Key according to selected environment.
+    3.  **Client ID** – Enter Client ID which you will receive from your developer account at https://developer.snapfinance.com/api-key/
+    4.  **Client Secret Key** – Enter Client Secret Key which you will receive from your developer account at https://developer.snapfinance.com/api-key/
+Now click save and customer will see the Snap Finance Checkout option during the checkout process.
+    4.  Now click save and customer will see the Snap Finance Checkout option during the checkout process.
+    5. Upon completion of financing, the customer will return and the order will be processing in **WooCommerce >> Orders**.
 
-1.  Pull the code from the repository and paste/upload it to `<wordpress-root>/wp-content/plugins`folder.
-2.  Login to WordPress admin and go to Plugins.
-3.  Activate the plugin.
+### ORDER COMPLETE CALLBACK
 
-## Plugin Configuration
-
-1.  Login to WordPress admin and open WooCommerce Settings.
-2.  Click on payment tab and then on ‘Snap Finance’ plugin.
-
-    1.  Enable/Disable – Tick to enable the module.
-    2.  Title – Title you want to display at checkout page
-    3.  Description – Enter appropriate description to display at checkout.
-    4.  Environment: Select the environment for plugin whether it is sandbox or production. You need to enter Client ID and Secret Key according to selected  environment.
-    5.  Client ID – Enter Client ID which you will receive from your developer account on Snap Finance Website.
-    6.  Client Secret Key – Enter Client Secret Key which you will receive from your developer account on Snap Finance Website.
-    7.  Now click save and customer will get Snap Finance option during the checkout process
-    8.  Now click on place order button and you will see a button labeled as “Checkout with snap�? Click on blue button now.
-    9.  This will redirect you to snap finance url for further procedure so  you can complete order.
-
-3.  Order Complete Api Callback
-
-    1.  After processing order, merchant needs to complete order from wordpress backend.
-    2.  This process will call API - POST /v2/internal/application/complete/{applicationId}
-    3.  This will get Application Status from Snap Finance.
-
-**Note** Always keep a backup of your existing WooCommerce installation including Mysql Database, before installing a new plugin.
+* You must complete the order from **WooCommerce >> Orders** so that Snap Finance is informed of the changed status.
+* This process will finalize the status for order with Snap Finance.
 
 ## Changelog
 
 
 ### 1.0 
-* Initial release.
+* Intial release.
 
 ### 1.0.1
 * Added error handling in API response
