@@ -90,3 +90,7 @@ Snap Finance’s WooCommerce checkout plugin offers an easy way to enable your W
 ### 1.0.10
 * Removed Dynamic button on checkout page
 * Updated plugin description
+
+### 1.0.11
+* Changed Description of plugin
+* Changed message for order denied

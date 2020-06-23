@@ -96,7 +96,7 @@ snap.checkoutButton({
             });
 
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Place order failed for application: ' + data.applicationId + ' was denied.</p>');
+            jQuery('#checkout').before('<p class="wc_snap_error" >Your application for a Snap lease was denied.  For your reference, your application ID is ' + data.applicationId + '.</p>');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
@@ -123,7 +123,7 @@ snap.checkoutButton({
     onNotification: function (data, actions) {
         if (data.applicationId) {
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Place order failed for application: ' + data.applicationId + '</p>');
+            jQuery('#checkout').before('<p class="wc_snap_error" >Your application for a Snap lease was denied.  For your reference, your application ID is ' + data.applicationId + '</p>');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
@@ -147,7 +147,7 @@ snap.checkoutButton({
     onError: function (data, actions) {
         if (data.applicationId) {
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Place order failed for application: ' + data.applicationId + '</p>');
+            jQuery('#checkout').before('<p class="wc_snap_error" >Your application for a Snap lease was denied.  For your reference, your application ID is ' + data.applicationId + '</p>');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
