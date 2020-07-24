@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="divider"><span></span></div>
 
 	</main>
-	<h3><span class="status-title">Status: </span><span class="status-no">Incomplete, please complete your Snap lease application or pick a different method of payment to complete your order.</span></h3>
+	<h3><span class="status-title">Status: </span><span class="status-no">Incomplete, please complete your Snap application or pick a different method of payment to complete your order.</span></h3>
 	<div class="divider"></div>
 
 <div id="placeorder" class="application_id_box">

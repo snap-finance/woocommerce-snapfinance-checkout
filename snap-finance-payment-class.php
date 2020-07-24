@@ -10,7 +10,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			$this->id                 = 'snap_finance'; // payment gateway plugin ID
 			$this->icon               = ''; // URL of the icon that will be displayed on checkout page near your gateway name
 			$this->has_fields         = true; // in case you need a custom credit card form
-			$this->method_title       = 'Snap Finance Checkout';
+			$this->method_title       = 'Snap Finance';
 			$this->method_description = 'Available to all credit types.  Financing between $250 to $3,000. Get Fast, Flexible Financing now!'; // will be displayed on the options page
 			// gateways can support subscriptions, refunds, saved payment methods,
 			// but in this tutorial we begin with simple payments
@@ -48,7 +48,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			}
 
 			if ( empty($this->snap_finance_checkout_option) ) {				
-				$sand_box_urls = 'https://d2l11kwwuv5w27.cloudfront.net/';
+				$sand_box_urls = 'https://snap-assets-dev-qa.snapfinance.com/';
 				$response_xml_data = file_get_contents( $sand_box_urls );
 				$response_xml_data = simplexml_load_string($response_xml_data);
 				if( $response_xml_data ){				
@@ -90,7 +90,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 		public function init_form_fields() {
 
 			$checkout_button = $checkout_option = array();
-			$sand_box_urls = 'https://d2l11kwwuv5w27.cloudfront.net/';
+			$sand_box_urls = 'https://snap-assets.snapfinance.com/';
 			$response_xml_data = file_get_contents( $sand_box_urls );
 			$response_xml_data = simplexml_load_string($response_xml_data);
 			if( $response_xml_data ){				
@@ -110,7 +110,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 				}
 			}
 
-			$live_checkout_button = $live_checkout_option = array();
+			$live_checkout_button = $live_checkout_option = array(); 
 			$live_box_urls = 'https://snap-assets.snapfinance.com/';
 			$response_xml_data = file_get_contents( $live_box_urls );
 			$response_xml_data = simplexml_load_string($response_xml_data);
@@ -129,11 +129,18 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 				}
 			}
 
+			if ( empty( $checkout_option ) ) {
+				$checkout_option[''] = 'No logo found button only';
+			}
+
+			if ( empty( $live_checkout_option ) ) {
+				$live_checkout_option[''] = 'No logo found button only';
+			}
 
 			$this->form_fields = array(
 				'enabled'                            => array(
 					'title'       => __('Enable/Disable', 'snap-finance-checkout'),
-					'label'       => __('Enable Snap Finance Checkout', 'snap-finance-checkout'),
+					'label'       => __('Enable Snap Finance', 'snap-finance-checkout'),
 					'type'        => 'checkbox',
 					'description' => '',
 					'default'     => 'no'
@@ -142,7 +149,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title'       => __('Title','snap-finance-checkout'),
 					'type'        => 'text',
 					'description' => __('This controls the title which the user sees during checkout.', 'snap-finance-checkout'),
-					'default'     => 'Snap Finance Checkout',
+					'default'     => 'Snap Finance',
 					'desc_tip'    => true,
 				),
 				'description'                        => array(
@@ -209,9 +216,9 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 		public function get_icon() {
 			$icon_url  = $this->snap_finance_checkout_option;
 			$icon_html = '<img style="max-height:2.6em;" id="snap-finance-checkout-icon" data-url="'. $this->snap_finance_checkout_button .'" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr__( 'Snap finance mark', 'woocommerce' ) . '" />';
-		
-					return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
-				}
+			
+			return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
+		}
 
 		 /*
 	     * Fields validation, more in Step 5
@@ -285,6 +292,10 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 
 			$redirect_url = str_replace( 'key', 'payment_method=snap_finance&key', $c );
 			$redirect_url = $woocommerce->cart->get_checkout_url();
+			$url_last_charecter = substr($redirect_url, -1);
+			if ( $url_last_charecter != '/' ) {
+				$redirect_url .= '/';
+			}
 			$redirect_url .= 'order-pay/'. $order_id.'/?payment_method=snap_finance&key='.get_post_meta( $order_id, '_order_key', true );
 			//$redirect_url = site_url($redirect_url);
 			// Redirect to the thank you page

@@ -119,3 +119,8 @@ Now click save and customer will see the Snap Finance Checkout option during the
 ### 1.0.11
 * Changed Description of plugin
 * Changed message for order denied
+
+### 1.0.12
+* Updated code to check "/" in intermediate order transaction page
+* Removed "Lease" from order messages
+* Fixed empty cart issue after order denied

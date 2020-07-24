@@ -69,6 +69,7 @@ function snap_finance_order_failed() {
 	}
 
 	WC()->cart->empty_cart();
+	WC()->session->set('cart', array());
 	wp_send_json( array( 'Done' ) );
 }
 

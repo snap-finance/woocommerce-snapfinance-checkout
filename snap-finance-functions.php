@@ -18,7 +18,7 @@ function after_complete_payment( $order_id ) {
 		if ( function_exists( 'is_order_received_page' ) &&	is_order_received_page() && $order_data['payment_method'] == 'snap_finance' ) {
 			?>
 			<h3>
-				<span class="status-title">Status: </span><span class="status-yes">Snap Lease signed and confirmed.</span>
+				<span class="status-title">Status: </span><span class="status-yes">Snap Application signed and confirmed.</span>
 			</h3>
 			<?php
 		}
@@ -29,6 +29,14 @@ function after_complete_payment( $order_id ) {
 
 function snap_finance_load_textdomain() {
 	load_plugin_textdomain( 'snap-finance-checkout', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	$woocommerce_snap_finance_settings = get_option('woocommerce_snap_finance_settings');
+	if ( $woocommerce_snap_finance_settings ) {
+		if ( $woocommerce_snap_finance_settings['title'] != 'Snap Finance' || $woocommerce_snap_finance_settings['description'] != 'Available to all credit types. Financing between $250 to $3,000. Get Fast, Flexible Financing now!' ) {
+			$woocommerce_snap_finance_settings['title'] = 'Snap Finance';
+			$woocommerce_snap_finance_settings['description'] = 'Available to all credit types. Financing between $250 to $3,000. Get Fast, Flexible Financing now!';
+			update_option('woocommerce_snap_finance_settings',$woocommerce_snap_finance_settings);
+		}
+	}
 }
 
 function snap_finance_title_change( $title ) {

@@ -94,9 +94,9 @@ snap.checkoutButton({
             jQuery.post(snap_finance.ajaxurl, data, function (response) {
                 
             });
-
+            jQuery(document.body).trigger('wc_fragment_refresh');
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Your application for a Snap lease was denied.  For your reference, your application ID is ' + data.applicationId + '.</p>');
+            jQuery('.status-no').html('Your snap application was denied.  For your reference, your application ID is ' + data.applicationId + '.');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
@@ -106,6 +106,12 @@ snap.checkoutButton({
                 'message': data.message,
                 'full_error': data
             };
+
+            setInterval(function() {
+                jQuery('body').trigger('wc_fragment_refresh');
+                jQuery('body').trigger('wc_fragments_refreshed');
+                jQuery('body').trigger('updated_wc_div');
+            }, 100);
 
             jQuery.post(snap_finance.ajaxurl, data, function (response) {
                 var url_link = window.location.href;
@@ -123,7 +129,7 @@ snap.checkoutButton({
     onNotification: function (data, actions) {
         if (data.applicationId) {
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Your application for a Snap lease was denied.  For your reference, your application ID is ' + data.applicationId + '</p>');
+            jQuery('.status-no').html('Your snap application was denied.  For your reference, your application ID is ' + data.applicationId + '.');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
@@ -147,7 +153,7 @@ snap.checkoutButton({
     onError: function (data, actions) {
         if (data.applicationId) {
             jQuery('.wc_snap_error').remove();
-            jQuery('#checkout').before('<p class="wc_snap_error" >Your application for a Snap lease was denied.  For your reference, your application ID is ' + data.applicationId + '</p>');
+            jQuery('.status-no').html('Your snap application was denied.  For your reference, your application ID is ' + data.applicationId + '.');
             if (data.message) {
                 jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
             }
