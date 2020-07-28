@@ -55,11 +55,11 @@ Plugin Configuration
 3. Enable ‘Snap Finance Checkout’ plugin toggle.
 4. Click on ‘Snap Finance Checkout’ plugin.
 
-    1.  **Enable/Disable** – Tick to enable the module.
+    1.  **Enable/Disable:** Tick to enable the module.
     2.  **Environment:** Select the environment for plugin whether it is sandbox or live (production). You need to enter                 
 Client ID and Secret Key according to selected environment.
-    3.  **Client ID** – Enter Client ID which you will receive from your developer account at https://developer.snapfinance.com/api-key/
-    4.  **Client Secret Key** – Enter Client Secret Key which you will receive from your developer account at https://developer.snapfinance.com/api-key/
+    3.  **Client ID:** Enter Client ID which you will receive from your developer account at https://developer.snapfinance.com/api-key/
+    4.  **Client Secret Key:** Enter Client Secret Key which you will receive from your developer account at https://developer.snapfinance.com/api-key/
 Now click save and customer will see the Snap Finance Checkout option during the checkout process.
     4.  Now click save and customer will see the Snap Finance Checkout option during the checkout process.
     5. Upon completion of financing, the customer will return and the order will be processing in **WooCommerce >> Orders**.
