@@ -48,7 +48,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			}
 
 			if ( empty($this->snap_finance_checkout_option) ) {				
-				$sand_box_urls = 'https://snap-assets-dev-qa.snapfinance.com/';
+				$sand_box_urls = 'https://snap-assets.snapfinance.com/';
 				$response_xml_data = file_get_contents( $sand_box_urls );
 				$response_xml_data = simplexml_load_string($response_xml_data);
 				if( $response_xml_data ){				
@@ -130,11 +130,11 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			}
 
 			if ( empty( $checkout_option ) ) {
-				$checkout_option[''] = 'No logo found button only';
+				$checkout_option['No logo found button only'] = 'No logo found button only';
 			}
 
 			if ( empty( $live_checkout_option ) ) {
-				$live_checkout_option[''] = 'No logo found button only';
+				$live_checkout_option['No logo found button only'] = 'No logo found button only';
 			}
 
 			$this->form_fields = array(
@@ -215,7 +215,9 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 
 		public function get_icon() {
 			$icon_url  = $this->snap_finance_checkout_option;
+			if($icon_url != "No logo found button only") {
 			$icon_html = '<img style="max-height:2.6em;" id="snap-finance-checkout-icon" data-url="'. $this->snap_finance_checkout_button .'" src="' . esc_url( $icon_url ) . '" alt="' . esc_attr__( 'Snap finance mark', 'woocommerce' ) . '" />';
+			}
 			
 			return apply_filters( 'woocommerce_gateway_icon', $icon_html, $this->id );
 		}

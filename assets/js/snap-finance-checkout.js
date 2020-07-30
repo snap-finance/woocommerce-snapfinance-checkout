@@ -18,7 +18,9 @@ jQuery(document).ready(function () {
     function preview_logo() {
         jQuery('.logo-img').each( function(){
             jQuery(this).next().remove();
-            jQuery(this).after( '<img class="prev-logo" style="    margin-left: 5%;" src="'+jQuery(this).val()+'" />' );
+			if(jQuery(this).val() != 'No logo found button only') {
+            	jQuery(this).after( '<img class="prev-logo" style="    margin-left: 5%;" src="'+jQuery(this).val()+'" />' );
+			}
         });
     }
 
