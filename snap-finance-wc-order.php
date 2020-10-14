@@ -105,6 +105,7 @@ function snap_finance_complete_order( $order_id ) {
 		$api_url = "https://api.snapfinance.com/checkout/v2/internal/application/complete/" . $application_id;
 	}
 	$args = array(
+		'timeout'       => 100,
 		'returntransfer' => true,
 		'headers'        => array(
 			"content-type" =>  "application/json",
@@ -120,9 +121,11 @@ function snap_finance_complete_order( $order_id ) {
 		} else {
 			$response = '';
 		}
+		
 		update_post_meta( $order_id, '_final_responce', $response );
 	}
-	
+	//print_r($response);
+	//die();
 }
 
 ?>

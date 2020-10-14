@@ -43,7 +43,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 				$this->snap_finance_client_secret    = $this->get_option( 'snap_finance_client_live_secret' );
 				$this->snap_finance_checkout_button    = $this->get_option( 'snap_finance_client_live_checkout_button' );
 				$this->snap_finance_checkout_option    = $this->get_option( 'snap_finance_client_live_checkout_option' );
-				$this->snap_finance_api_url          = 'https://checkout-prod.auth0.com/oauth/token';
+				$this->snap_finance_api_url          = 'https://auth.snapfinance.com/oauth/token';
 				$this->snap_finance_api_audience_url = 'https://api.snapfinance.com/checkout/v2';
 			}
 
@@ -193,7 +193,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 				),
 				'snap_finance_client_live_secret'    => array(
 					'title' => __('Client Secret Live Key', 'snap-finance-checkout'),
-					'type'  => 'text'
+					'type'  => 'password'
 				),
 				/*'snap_finance_client_live_checkout_button'                  => array(
 					'title'       => __('Live Checkout Button Logo', 'snap-finance-checkout'),

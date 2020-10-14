@@ -108,10 +108,12 @@ function wc_snap_finance_style() {
 			if ( empty( $total_tax ) ) {
 				$total_tax = 0;
 			}
+			$order = new WC_Order($order_id);
 			$transaction = array(
 				'orderId'     => $order_id,
 				'totalAmount' => get_post_meta( $order_id, '_order_total', true ),
 				'taxAmount'   => $total_tax,
+				'shippingAmount' => $order->get_total_shipping(),
 				'products'    => $order_items,
 				'customer'    => array(
 					'firstName'   => get_post_meta( $order_id, '_billing_first_name', true ),
@@ -218,7 +220,7 @@ function get_snap_finance_token() {
 	} else {
 		$client_id     = $snap_finance_setting['snap_finance_client_live_id'];
 		$client_secret = $snap_finance_setting['snap_finance_client_live_secret'];
-		$api_url       = 'https://checkout-prod.auth0.com/oauth/token';
+		$api_url       = 'https://auth.snapfinance.com/oauth/token';
 		$audience_url  = 'https://api.snapfinance.com/checkout/v2';
 	}
 
@@ -241,16 +243,18 @@ function get_snap_finance_token() {
 			)
 		);
 		$response = wp_remote_post( $api_url, $args );
-		$response = $response['body'];
-		$response = json_decode( $response );
-		if ( isset( $response->access_token ) ) {
-			$snap_finance_token = $response->access_token;
-		} else {
-			$snap_finance_token = false;
-		}
+		if ( !is_wp_error( $request ) ) {
+			$response = $response['body'];
+			$response = json_decode( $response );
+			if ( isset( $response->access_token ) ) {
+				$snap_finance_token = $response->access_token;
+			} else {
+				$snap_finance_token = false;
+			}
 		// Add new updated token in database.
-		if ( $snap_finance_token ) {
-			set_transient( 'snap_finance_token', $snap_finance_token, 600 );
+			if ( $snap_finance_token ) {
+				set_transient( 'snap_finance_token', $snap_finance_token, 600 );
+			}
 		}
 	}
 
