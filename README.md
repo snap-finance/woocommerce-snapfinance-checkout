@@ -45,22 +45,22 @@ When shoppers select Snap Finance as their financing source, they will be guided
 #### Manual Installation
 * Pull the code from the repository and upload the contents to a folder in your '<wordpress-root>/wp-content/plugins' directory.
 * Login to WordPress admin and go to Plugins.
-* Find the Snap Finance Checkout plugin and click Activate.
+* Find the Snap Finance plugin and click Activate.
 * Proceed to Plugin Configuration
 
 ### Step 2
 Plugin Configuration
 1. Login to WordPress admin and open WooCommerce Settings.
 2. Click on payment tab and then on ‘Snap Finance’ plugin.
-3. Enable ‘Snap Finance Checkout’ plugin toggle.
-4. Click on ‘Snap Finance Checkout’ plugin.
+3. Enable ‘Snap Finance’ plugin toggle.
+4. Click on ‘Snap Finance’ plugin.
 
-    1.  **Enable/Disable:** Tick to enable the module.
+    1.  **Enable/Disable** – Tick to enable the module.
     2.  **Environment:** Select the environment for plugin whether it is sandbox or live (production). You need to enter                 
 Client ID and Secret Key according to selected environment.
-    3.  **Client ID:** Enter Client ID which you will receive from your developer account at https://developer.snapfinance.com/api-key/
-    4.  **Client Secret Key:** Enter Client Secret Key which you will receive from your developer account at https://developer.snapfinance.com/api-key/
-Now click save and customer will see the Snap Finance Checkout option during the checkout process.
+    3.  **Client ID** – Enter Client ID which you will receive from your developer account at https://developer.snapfinance.com/api-key/
+    4.  **Client Secret Key** – Enter Client Secret Key which you will receive from your developer account at https://developer.snapfinance.com/api-key/
+Now click save and customer will see the Snap Finance option during the checkout process.
     4.  Now click save and customer will see the Snap Finance Checkout option during the checkout process.
     5. Upon completion of financing, the customer will return and the order will be processing in **WooCommerce >> Orders**.
 
@@ -73,54 +73,59 @@ Now click save and customer will see the Snap Finance Checkout option during the
 
 
 ### 1.0 
-* Intial release.
+Intial release.
 
 ### 1.0.1
-* Added error handling in API response
+Added error handling in API response
 
 ### 1.0.2
-* Changes in JS inherited from Snap SDK.
-* Minor bug fixes.
+Changes in JS inherited from Snap SDK.
+Minor bug fixes.
 
 ### 1.0.3
-* Updated error handling condition which checks if woocommerce is installed or not.
-* Updated JavaScript code for better functionality.
+Updated error handling condition which checks if woocommerce is installed or not.
+Updated JavaScript code for better functionality.
 
 ### 1.0.4
-* Update Steps for checkout.
-* Added validation to check token is generated before checkout or not 
-* Minor bug fixes 
+Update Steps for checkout.
+Added validation to check token is generated before checkout or not 
+Minor bug fixes 
 
 ### 1.0.5
-* Removed Checkout button settings
+Removed Checkout button settings
 
 ### 1.0.6
-* Changes in the logic for API calls made to snap server
+Changes in the logic for API calls made to snap server
 
 ### 1.0.7
-* Tested Plugin with Wordpress 5.4 and Woocommerce 4
-* Changed Array function  that was reading payment method from checkout page
-* Update Order status message on Order Details Page after checkout.
+Tested Plugin with wordpress 5.4 and Woocommerce 4
+Changed Array function  that was reading payment method from checkout page
+Update Order status message on Order Details Page after checkout.
 
 ### 1.0.8
-* Updated Checkout Flow for better user experience
-* Checkout Button and Option selection from snap directory
-* Enabled Tracking facility for disabled plugin
-* Updated order status messages 
+Updated Checkout Flow for better user experience
+Checout Button and Option selection from snap directory
+Enabled Tracking facility for disabled plugin
+Updated order status messages 
 
 ### 1.0.9
-* Updated plugin code to store banner URL in DB at the time of update
-* Structured JavaScript file to avoid JavaScript clash
+Updated plugin code to store banner url in DB at the time of update
+Structured Javascript file to avoid javascript clash
 
 ### 1.0.10
-* Removed Dynamic button on checkout page
-* Updated plugin description
+Removed Dynamic button on checkout page
+Updated plugin description
 
 ### 1.0.11
-* Changed Description of plugin
-* Changed message for order denied
+Changed Description of plugin
+Changed message for order denied
 
 ### 1.0.12
-* Updated code to check "/" in intermediate order transaction page
-* Removed "Lease" from order messages
-* Fixed empty cart issue after order denied
+Updated Code to check "/" in intermediate order transaction page.
+Removed word "Lease" from order messages 
+Fixed Empty cart issue after order denied.
+
+### 1.0.13
+Updated STBS State Flow.
+Updated Production URL for token Generation.
+Added Shipping Method in Invoice of Snap App.
