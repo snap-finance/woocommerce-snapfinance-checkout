@@ -11,7 +11,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			$this->icon               = ''; // URL of the icon that will be displayed on checkout page near your gateway name
 			$this->has_fields         = true; // in case you need a custom credit card form
 			$this->method_title       = 'Snap Finance';
-			$this->method_description = 'Available to all credit types.  Financing between $250 to $3,000. Get Fast, Flexible Financing now!'; // will be displayed on the options page
+			$this->method_description = 'Credit-challenged? Snap approves $150 up to $5,000 in accessible lease-to-own financing.'; // will be displayed on the options page
 			// gateways can support subscriptions, refunds, saved payment methods,
 			// but in this tutorial we begin with simple payments
 			$this->supports = array(
@@ -20,7 +20,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 
 			// Method with all the options fields
 			$this->init_form_fields();
-			$this->order_button_text = __( 'Checkout With Snap', 'snap-finance-checkout' );
+			$this->order_button_text = __( 'Pay with Snap', 'snap-finance-checkout' );
 			// Load the settings.
 			$this->init_settings();
 			$this->title             = $this->get_option( 'title' );
@@ -36,19 +36,19 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 				$this->snap_finance_client_secret    = $this->get_option( 'snap_finance_client_sandbox_secret' );
 				$this->snap_finance_checkout_button    = $this->get_option( 'snap_finance_client_sandbox_checkout_button' );
 				$this->snap_finance_checkout_option    = $this->get_option( 'snap_finance_client_sandbox_checkout_option' );
-				$this->snap_finance_api_url          = 'https://auth-sandbox.snapfinance.com/oauth/token';
-				$this->snap_finance_api_audience_url = 'https://api-sandbox.snapfinance.com/checkout/v2';
+				$this->snap_finance_api_url          = constant("SANDBOX_API_URL");
+				$this->snap_finance_api_audience_url = constant("SANDBOX_AUDIENCE_URL");
 			} else {
 				$this->snap_finance_client_id        = $this->get_option( 'snap_finance_client_live_id' );
 				$this->snap_finance_client_secret    = $this->get_option( 'snap_finance_client_live_secret' );
 				$this->snap_finance_checkout_button    = $this->get_option( 'snap_finance_client_live_checkout_button' );
 				$this->snap_finance_checkout_option    = $this->get_option( 'snap_finance_client_live_checkout_option' );
-				$this->snap_finance_api_url          = 'https://auth.snapfinance.com/oauth/token';
-				$this->snap_finance_api_audience_url = 'https://api.snapfinance.com/checkout/v2';
+				$this->snap_finance_api_url          = constant("LIVE_API_URL");
+				$this->snap_finance_api_audience_url = constant("LIVE_AUDIENCE_URL");
 			}
 
 			if ( empty($this->snap_finance_checkout_option) ) {				
-				$sand_box_urls = 'https://snap-assets.snapfinance.com/';
+				$sand_box_urls = constant("SANDBOX_IMG_URL");
 				$response_xml_data = file_get_contents( $sand_box_urls );
 				$response_xml_data = simplexml_load_string($response_xml_data);
 				if( $response_xml_data ){				
@@ -90,7 +90,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 		public function init_form_fields() {
 
 			$checkout_button = $checkout_option = array();
-			$sand_box_urls = 'https://snap-assets.snapfinance.com/';
+			$sand_box_urls = constant("SANDBOX_IMG_URL");
 			$response_xml_data = file_get_contents( $sand_box_urls );
 			$response_xml_data = simplexml_load_string($response_xml_data);
 			if( $response_xml_data ){				
@@ -111,7 +111,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 			}
 
 			$live_checkout_button = $live_checkout_option = array(); 
-			$live_box_urls = 'https://snap-assets.snapfinance.com/';
+			$live_box_urls = constant("SANDBOX_IMG_URL");
 			$response_xml_data = file_get_contents( $live_box_urls );
 			$response_xml_data = simplexml_load_string($response_xml_data);
 			if( $response_xml_data ){
@@ -156,7 +156,7 @@ class WC_snap_finance_Gateway extends WC_Payment_Gateway {
 					'title'       => __('Description','snap-finance-checkout'),
 					'type'        => 'textarea',
 					'description' => __('This controls the description which the user sees during checkout.', 'snap-finance-checkout'),
-					'default'     => 'Available to all credit types.  Financing between $250 to $3,000. Get Fast, Flexible Financing now!',
+					'default'     => 'Credit-challenged? Snap approves $150 up to $5,000 in accessible lease-to-own financing.',
 				),
 				'snap_finance_mode'                  => array(
 					'title'       => __('Environment', 'snap-finance-checkout'),
