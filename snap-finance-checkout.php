@@ -8,14 +8,14 @@
  * that starts the plugin.
  *
  * @link              snapfinance.com
- * @since             1.0.13
+ * @since             2.0.0
  * @package           snap_finance_checkout
  *
  * @wordpress-plugin
  * Plugin Name:       Snap Finance
  * Plugin URI:        https://developer.snapfinance.com/woocommerce/
- * Description:       Available to all credit types.  Financing between $250 to $3,000. Get Fast, Flexible Financing now!
- * Version:           1.0.13
+ * Description:       Credit-challenged? Snap approves $150 up to $5,000 in accessible lease-to-own financing.
+ * Version:           2.0.0
  * Author:            Snap Finance
  * Author URI:        https://snapfinance.com/
  * License:           GPL-2.0+
@@ -63,7 +63,7 @@ if ( function_exists( 'is_multisite' ) && is_multisite() ) {
 if ( $activated ) { 
 	add_action( 'plugins_loaded', 'snap_finance_init_gateway_class' );
 } else {	
-	if ( !function_exists( 'deactivate_plugins' ) ) { 
+	if ( ! function_exists( 'deactivate_plugins' ) ) { 
 		require_once ABSPATH . '/wp-admin/includes/plugin.php'; 
 	} 
 	deactivate_plugins( plugin_basename( __FILE__ ) );
@@ -71,18 +71,47 @@ if ( $activated ) {
 }
 
 function deactivate_snap_finance_checkout() {
-
+	$plugin_data = get_plugin_data( __FILE__ );
+	$plugin_version = $plugin_data['Version'];
 	$to = 'devsupport@snapfinance.com';
 	$subject = 'Disabled Wordpress plugin : '.site_url();
 	$body = '<p>Following Merchant has disabled plugin</p>
-	<p>Merchant URL: '.site_url().'</p>';
+	<p>Merchant URL: '.site_url().'</p><p>Plugins Version: '.$plugin_version.'</p>';
 	$headers = array('Content-Type: text/html; charset=UTF-8');
+	wp_mail( $to, $subject, $body, $headers );	
+}
 
-	wp_mail( $to, $subject, $body, $headers );
-	
+function shiping_round_option_mail() {
+	$plugin_data = get_plugin_data( __FILE__ );
+	$payment_setting = get_option( 'woocommerce_snap_finance_settings' );
+	$plugin_version = $plugin_data['Version'];
+	$to = 'support@snapfinance.com'; 
+	$subject = 'Roundup is ON';
+	$body = '<p>Store: '.site_url().'</p>';
+	if ( isset( $payment_setting['snap_finance_client_live_id'] ) ) {
+		$body .='<p>Merchant ID: '. $payment_setting['snap_finance_client_live_id'] .'</p>';	
+	}	
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+	wp_mail( $to, $subject, $body, $headers );	
 }
 
 register_deactivation_hook( __FILE__, 'deactivate_snap_finance_checkout' );
+
+function activate_snap_finance_checkout() {
+	$plugin_data = get_plugin_data( __FILE__ );
+	$plugin_version = $plugin_data['Version'];
+	$to = 'devsupport@snapfinance.com';
+	$subject = 'Activated Wordpress plugin : '.site_url();
+	$body = '<p>Following Merchant has activated plugin</p>
+	<p>Merchant URL: '.site_url().'</p><p>Plugins Version: '.$plugin_version.'</p>';
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+	wp_mail( $to, $subject, $body, $headers );
+	if ( get_option('woocommerce_tax_round_at_subtotal') == 'yes' ) {
+		shiping_round_option_mail();
+	}
+}
+
+register_activation_hook( __FILE__, 'activate_snap_finance_checkout' );
 
 function snap_finance_checkout_error_notice() {
 	?>
@@ -97,6 +126,8 @@ function snap_finance_checkout_error_notice() {
 
 
 function snap_finance_init_gateway_class() {
+
+	include 'config.php';
 
 	include 'snap-finance-functions.php';
 

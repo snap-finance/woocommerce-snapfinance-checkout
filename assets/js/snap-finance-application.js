@@ -32,16 +32,11 @@ snap.checkoutButton({
         height: snap_finance.height
     },
 
-    onInit: function (data, actions) {
-        // This method is invoked when the button is initialized.
-        // Merchant site developer should include the following code to validate the transaction.
-        // This will throw an error containing the validation error information.
-        return actions.validateTransaction(snap_finance.transaction);
-    },
-
     onClick: function (data, actions) {
         // This method is invoked upon click of the Snap Checkout button.
         // Merchant site developer should include the following code to invoke checkout:
+        
+		jQuery('#order_comments').text(snap_finance.transaction);
         return actions.launchCheckout(snap_finance.transaction);
     },
 
@@ -124,30 +119,6 @@ snap.checkoutButton({
         // Snap funding was denied (i.e. approval was less than shopping cart amount)
         // Snap will have notified the customer of this in a separate window.
         // The merchant site developer can include code here to respond with an appropriate user experience.
-    },
-
-    onNotification: function (data, actions) {
-        if (data.applicationId) {
-            jQuery('.wc_snap_error').remove();
-            jQuery('.status-no').html('Your snap application was denied.  For your reference, your application ID is ' + data.applicationId + '.');
-            if (data.message) {
-                jQuery('#checkout').before('<p class="wc_snap_error" >' + data.message + '</p>');
-            }
-            var data = {
-                'action': 'snap_finance_add_notes',
-                'orderId': snap_finance.order_id,
-                'message': data.message,
-                'full_error': data
-            };
-
-            jQuery.post(snap_finance.ajaxurl, data, function (response) {
-                var url_link = window.location.href;
-                url_link = url_link.split('payment_method');
-
-            });
-        }
-        // Snap may invoke this method to provide status information to the merchant site.
-        // Notifications are purely informational and do not require action by the merchant site.
     },
 
     onError: function (data, actions) {
